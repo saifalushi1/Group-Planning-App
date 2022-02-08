@@ -12,16 +12,43 @@
     display: inline-block;
     vertical-align: middle;
   }
+
+  /* nav {
+      display: flex;
+      align-items: ce;
+  }
+
   
   nav a {
     text-align: center;
     color: gray;
-    display: block;
+    display: inline-flex;
+    justify-content: space-between;
     padding: 20px;
     font-size: 1.2em;
     text-decoration: none;
-  }
+  } */
   
+nav{
+    border:1px solid #ccc;
+    border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+nav li{
+    display:inline-block;
+}
+nav a{
+    display:inline-block;
+    color: gray;
+    padding: 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    padding:10px;
+}
+
   nav a:hover {
     background: #282c34;
   }
