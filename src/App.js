@@ -9,14 +9,11 @@ function App() {
   return (
     <div>
     <nav className='logo'>
-      <Link to="/">
+      <Link to="/login">
         <h1>Grouper</h1>
       </Link>
     </nav>
-    <nav className='options'>
-      <Link to="/login">Login</Link>
-      <Link to="/sign-up">Sign Up</Link>
-    </nav>
+
     <main>
       <Routes>
         <Route path="/" element={<Main />}/>
