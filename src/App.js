@@ -55,7 +55,7 @@ if(userAuthToken) {
 console.log(`authToken: ${userAuthToken}`)
   return (
     <div>
-  
+
 
     <main>
       <Routes>
@@ -64,7 +64,7 @@ console.log(`authToken: ${userAuthToken}`)
          storeId={ storeId }
          loggedIn = { loggedIn }
         />}/>
-        <Route path="/sign-up" element = {<SignUp/>}/>
+        <Route path="/signup" element = { <SignUp headers={ headers } /> }/>
         <Route path="/reset-password" element={ <ResetPassword/> }/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/profile" element={<Profile/>} />
