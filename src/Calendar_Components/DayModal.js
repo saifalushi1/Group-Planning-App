@@ -1,15 +1,23 @@
 import { useState } from 'react'
 import { TimePickerComponent } from '@syncfusion/ej2-react-calendars'
 
-const NewEventModal = ({ onSave, onClose, handleDelete, eventsForDate, clicked, setEvents, events, endTime, startTime, setEndTime, setStartTime }) => {
+const NewEventModal = ({ 
+  onSave, 
+  onClose, 
+  handleDeleteOne, 
+  eventsForDate, 
+  clicked, 
+  setEndTime, 
+  setStartTime 
+  }) => {
   const [title, setTitle] = useState('')
   const [error, setError] = useState(false)
   const thisDaysEvents = eventsForDate(clicked)
 
   // Function to clear all events and close modal
-  const deleteAndClose = () => (
-      handleDelete(), onClose()
-  )
+  // const deleteAllAndClose = () => (
+  //     handleDeleteAll(), onClose()
+  // )
 
   // FUNCTION TO CONVERT MILITARY TIME TO STANDARD
   const convertMilitaryTime = (timeInput) => {
@@ -38,11 +46,12 @@ const NewEventModal = ({ onSave, onClose, handleDelete, eventsForDate, clicked, 
         <h2>Events</h2>
         <ul>
             { thisDaysEvents.map((event, index) => (
-                <div key={ index }>
+                <div onClick={ () => handleDeleteOne(event._id) } key={ index }>
                 <li> 
                 <strong>Event:</strong> { event.title } | 
                 <strong> Start:</strong> { convertMilitaryTime(event.startTime) } | 
                 <strong> End:</strong> { convertMilitaryTime(event.endTime) } 
+                <button id="deleteOne" onClick={ () => handleDeleteOne(event._id) }>X</button>
                 </li>
                 </div>
             )) }
@@ -73,7 +82,6 @@ const NewEventModal = ({ onSave, onClose, handleDelete, eventsForDate, clicked, 
         <button onClick={ onClose } id='cancelButton'>
           Cancel
         </button>
-        <button id="clear-all" onClick={ () => deleteAndClose() } >Clear All</button>
       </div>
 
       <div id='modalBackDrop' />

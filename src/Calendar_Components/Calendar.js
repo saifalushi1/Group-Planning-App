@@ -4,29 +4,67 @@ import CalendarHeader from "./CalendarHeader"
 import Day from "./Day"
 import NewEventModal from "./DayModal"
 import useDate from "./useDate"
+import axios from "axios"
 
-function Calendar() {
+function Calendar({ user, headers }) {
   const [nav, setNav] = useState(0)
   const [clicked, setClicked] = useState()
   const [startTime, setStartTime] = useState('')
   const [endTime, setEndTime] = useState('')
-  const [events, setEvents] = useState(
-    localStorage.getItem("events")
-      ? JSON.parse(localStorage.getItem("events"))
-      : []
-  )
+  const [events, setEvents] = useState([])
+  const [newEvent, setNewEvent] = useState({})
+  const [eventId, setEventId] = useState('')
 
   const eventsForDate = (date) => events.filter((e) => e.date === date)
 
+  // const getEvents = (id) => {
+  //   axios.get(`http://localhost:8000/grouper/events/${id}`, { params: {creator: id} }, { headers: headers })
+  //   .then((res) => res.json())
+  //   .then(json => {
+  //     setEvents(json)
+  //   })
+  //   .catch(console.error)
+  // }
+
+  const getEvents = (userId) => {
+    const userEventsUrl = `http://localhost:8000/grouper/events/${userId}` 
+    axios.get(userEventsUrl, { headers: headers} )
+    .then((res) => {
+      setEvents(res.data)
+    })
+    .catch(err => console.log("oh shit"))
+  }
+console.log(events)
+
+  const handleSubmit = () => {
+    axios.post(`http://localhost:8000/grouper/events`, { title: newEvent.title, date: newEvent.date, startTime: newEvent.startTime, endTime: newEvent.endTime, creator: user._id }, { headers: headers })
+    .then((res) => {
+      console.log(res)
+      // getEvents(user.id)
+    getEvents(user._id) 
+    })
+  }
+
   useEffect(() => {
-    localStorage.setItem("events", JSON.stringify(events))
-  }, [events])
+    getEvents(user._id) 
+  },[])
+
+  console.log(`new event: ${newEvent.title}`)
+
 
   const {days, dateDisplay} = useDate(events, nav)
 
-  const handleDelete = () => {
-    setEvents(events.filter(e => e.date !== clicked))
-  }
+  useEffect(() => {
+    handleSubmit()
+  }, [newEvent])
+
+  const handleDeleteOne = (id) => (
+    axios.delete(`http://localhost:8000/grouper/events/${id}`, { headers: headers})
+    .then(() => {
+      setEventId(id)
+      getEvents(user._id)
+    })
+  )
 
   return (
     <>
@@ -67,22 +105,17 @@ function Calendar() {
         clicked &&
         <NewEventModal
           eventsForDate={ eventsForDate }
-          events = { events }
-          setEvents={ setEvents }
-          startTime = { startTime }
-          endTime = { endTime }
           clicked={ clicked }
-          handleDelete= { handleDelete }
+          handleDeleteOne= { handleDeleteOne }
           onClose={() => setClicked(null)}
           setStartTime = { setStartTime }
           setEndTime = { setEndTime }
           onSave={title => {
-            setEvents([ ...events, { title, date: clicked, startTime, endTime }])
+            setNewEvent({ title, date: clicked, startTime, endTime })
             setClicked(null)
           }}
         />
       }
-
     </>
   )
 }

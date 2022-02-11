@@ -1,5 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
+import {
+    FormGroup,
+    Input,
+    Label,
+    FormFeedback,
+    Form,
+  } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = ({ headers }) => {
@@ -40,6 +47,45 @@ const SignUp = ({ headers }) => {
             Already registered <Link to="/">sign in?</Link>
         </p>
     </form>
+//     <Form onSubmit={(e) => handleSubmit(e)} >
+//     <FormGroup>
+//       <Label for="signUpEmail">Email</Label>
+//       <Input
+//         type="text"
+//         className="signUp-parameters"
+//         placeholder="Enter Your Name"
+//         onChange={ (e) => setNewName(e.target.value) }
+//       />
+//       <FormFeedback valid></FormFeedback>
+//       </FormGroup>
+//       <FormGroup>
+//         <Label for="signUpEmail">Email</Label>
+//         <Input 
+//           type="email"
+//           className="signUp-parameters"
+//           placeholder="Enter Your Email"
+//           onChange={ (e) => setNewEmail(e.target.value) }      
+//         />
+//         <FormFeedback valid></FormFeedback>
+//     </FormGroup>
+//      <FormGroup>
+//         <Label for="signUpPassword">Password</Label>
+//         <Input 
+//           type="password"
+//           className="signUp-parameters"
+//           placeholder="Enter Your Password"
+//           onChange={ (e) => setNewEmail(e.target.value) }      
+//         />
+//         <FormFeedback valid></FormFeedback>
+//     </FormGroup>
+//    <button type="submit" className="sign-up-button">Sign Up</button>
+//       <p className="create-new-account">
+//           <Link to="/">Already Have An Account? Login</Link>
+//       </p>
+//       <p className="forgot-password">
+//         <Link to="/reset-password">Forgot password?</Link>
+//       </p>
+//   </Form>
     )
 }
 

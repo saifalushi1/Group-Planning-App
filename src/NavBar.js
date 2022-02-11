@@ -1,46 +1,29 @@
-import React from "react";
-import "../src/App.css";
+import React, { useState } from "react";
+import "../src/NavBar.css";
 import { Link } from "react-router-dom";
 import { Navbar, 
     NavbarBrand,   
     NavbarToggler,   
     Collapse,  
-    Nav,    
-    NavLink,    
+    Nav,        
     NavItem,      
     UncontrolledDropdown,   
     DropdownToggle,   
     DropdownMenu,   
-    DropdownItem,            
-    NavbarText  } from "reactstrap";
-import Profile from "./Profile";
+    DropdownItem,       } from "reactstrap";
 
 const NavBar = () => {
+    const [navExpand, setNavExpand] = useState(false)
+
   return (
-    //    <div>
-    //         <nav className="logo">
-    //             <h1>Grouper</h1>
-    //             <ul>
-    //                 <li><Link to="/profile">User Profile</Link></li>
-    //                 <li> <Link to="/my-calendar">My Calendar</Link></li>
-    //                 <li><Link to="/group-calendars">Group Calendars</Link></li>
-    //                 <li><Link to="/about">About Us</Link></li>
-    //                 <li><Link to="/contact">Contact Us</Link></li>
-    //                 <li><Link to="/github">GitHub</Link></li>
-    //             </ul>
-    //         </nav>
-    //    </div>
     <div>
       <Navbar color="light" expand="md" light>
-        <NavbarBrand><Link to="/home">Grouper</Link></NavbarBrand>
-        <NavbarToggler onClick={function noRefCheck() {}} />
-        <Collapse navbar>
+        <NavbarBrand className="home-button"><Link to="/home">Grouper</Link></NavbarBrand>
+        <NavbarToggler onClick={() => setNavExpand(!navExpand)} />
+        <Collapse navbar isOpen={navExpand}>
           <Nav className="me-auto" navbar>
             <NavItem>
             <Link to="/profile">User Profile</Link>
-            </NavItem>
-            <NavItem>
-            <Link to="/my-calendar">My Calendar</Link>
             </NavItem>
             <NavItem>
             <Link to="/group-calendars">Group Calendars</Link>

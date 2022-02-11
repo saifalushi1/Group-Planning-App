@@ -15,7 +15,7 @@ button {
   border: none;
   outline: none;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 5px !important;
   color: white;
 }
 #header {
@@ -93,7 +93,7 @@ button {
   font-family: sans-serif;
 }
 #dayModal button {
-  margin: 0 30px;
+  margin: 0 37px;
 }
 #eventTitleInput {
   padding: 10px;
@@ -126,6 +126,9 @@ button {
   position: absolute;
   background-color: rgba(0,0,0,0.8);
 }
-#clear-all {
+#deleteOne{
   background-color: orangered;
+  width: 25px;
+  height: 25px;
+  padding: 0px 0px 0px 0px;
 }
