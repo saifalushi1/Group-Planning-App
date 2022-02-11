@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const Login = ({ loginRequest, storeId, loggedIn, loginError }) => {
     const [inputEmailValue, setinputEmailValue] = useState('')
@@ -46,7 +45,7 @@ console.log(inputEmailValue)
                 <input type="submit" value={`submit`} className="login-button" />
                 {/*onClick={ (e) => handleSubmit(e) } */}
             <p className="create-new-account">
-                <Link to="/sign-up">Create a new account</Link>
+                <Link to="/signup">Create a new account</Link>
             </p>
             <p className="forgot-password">
                <Link to="/reset-password">Forgot password?</Link>

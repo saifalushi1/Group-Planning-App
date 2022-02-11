@@ -37,7 +37,7 @@ const SignUp = ({ headers }) => {
         </div>
         <button type="submit" className="sign-up-button">Sign Up</button>
         <p className="login">
-            Already registered <Link to="/login">sign in?</Link>
+            Already registered <Link to="/">sign in?</Link>
         </p>
     </form>
     )

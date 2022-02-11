@@ -5,8 +5,10 @@ import Login from './Authentication/Login';
 import SignUp from './Authentication/SignUp';
 import ResetPassword from './Authentication/ResetPassword';
 import Home from './Home';
+import EventsThatDay from './Side_components/EventsThatDay';
 import Profile from './Profile';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 const [userAuthToken, setUserAuthToken] = useState(null)
@@ -59,7 +61,7 @@ console.log(`authToken: ${userAuthToken}`)
 
     <main>
       <Routes>
-        <Route path="/login" element= {<Login 
+        <Route path="/" element= {<Login 
          loginRequest={ loginRequest } 
          storeId={ storeId }
          loggedIn = { loggedIn }
@@ -67,7 +69,8 @@ console.log(`authToken: ${userAuthToken}`)
         <Route path="/signup" element = { <SignUp headers={ headers } /> }/>
         <Route path="/reset-password" element={ <ResetPassword/> }/>
         <Route path="/home" element={<Home/>}/>
-        <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile" element={ <Profile/> } />
+        <Route path="/test" element={ <EventsThatDay /> } />
       </Routes>
     </main>
   </div>
