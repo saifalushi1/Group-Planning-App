@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup, ListGroupItem, Card, CardBody, CardTitle, CardSubtitle, CardText, CardLink } from "reactstrap";
+import { ListGroup, ListGroupItem } from "reactstrap";
 
 const EventsThatDay = () => {
   return (

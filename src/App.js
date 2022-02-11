@@ -7,6 +7,9 @@ import ResetPassword from './Authentication/ResetPassword';
 import Home from './Home';
 import EventsThatDay from './Side_components/EventsThatDay';
 import Profile from './Profile';
+import MyCalendar from './MyCalendar';
+import About from './About';
+import GroupCalendars from './GroupCalendars';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -67,10 +70,14 @@ console.log(`authToken: ${userAuthToken}`)
          loggedIn = { loggedIn }
         />}/>
         <Route path="/signup" element = { <SignUp headers={ headers } /> }/>
-        <Route path="/reset-password" element={ <ResetPassword/> }/>
+        <Route path="/resetPassword" element={ <ResetPassword/> }/>
         <Route path="/home" element={<Home/>}/>
-        <Route path="/profile" element={ <Profile/> } />
-        <Route path="/test" element={ <EventsThatDay /> } />
+        <Route path="/profile" element={ <Profile/> }/>
+        <Route path="/my-calendar" element={ <MyCalendar/> }/>
+        <Route path="/group-calendars" element={ <GroupCalendars/> }/>
+        <Route path="/about" element={ <About/> }/>
+        <Route path="/test" element={ <EventsThatDay /> }/>
+
       </Routes>
     </main>
   </div>

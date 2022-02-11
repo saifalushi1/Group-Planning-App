@@ -1,15 +1,13 @@
 import React from "react";
 import NavBar from "./NavBar";
-import Calendar from "./Calendar_Components/Calendar"
 
-
-const Home = () => {
+const MyCalendar = () => {
     return(
         <div>
             <NavBar/>
-            <Calendar />
+            <p>MY CALENDAR</p>
         </div>
     )
 }
 
-export default Home;
+export default MyCalendar

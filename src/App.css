@@ -1,25 +1,8 @@
-    nav h1 {
+    /* nav h1 {
     margin: 0;
     display: inline-block;
     vertical-align: middle;
   }
-
-  /* nav {
-      display: flex;
-      align-items: ce;
-  }
-
-  
-  nav a {
-    text-align: center;
-    color: gray;
-    display: inline-flex;
-    justify-content: space-between;
-    padding: 20px;
-    font-size: 1.2em;
-    text-decoration: none;
-  } */
-  
 nav{
     border:1px solid #ccc;
     border-width:1px 0;
@@ -42,4 +25,12 @@ nav a{
 
   nav a:hover {
     background: #282c34;
+  } */
+
+  .eventsWrapper{
+    width: 400px;
+    height: 400px;
+    float: right;
+    background-color: #D3D3D3;
+    border-radius: 5px;
   }
