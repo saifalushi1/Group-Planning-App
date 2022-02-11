@@ -9,7 +9,7 @@ import EventsThatDay from './Side_components/EventsThatDay';
 import Profile from './Profile';
 import MyCalendar from './MyCalendar';
 import About from './About';
-import GroupCalendars from './GroupCalendars';
+import Contact from './Contact';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -74,8 +74,9 @@ console.log(`authToken: ${userAuthToken}`)
         <Route path="/home" element={<Home/>}/>
         <Route path="/profile" element={ <Profile/> }/>
         <Route path="/my-calendar" element={ <MyCalendar/> }/>
-        <Route path="/group-calendars" element={ <GroupCalendars/> }/>
+        {/* <Route path="/group-calendars" element={ <GroupCalendars/> }/> */}
         <Route path="/about" element={ <About/> }/>
+        <Route path="/contact" element={ <Contact/> }/>
         <Route path="/test" element={ <EventsThatDay /> }/>
 
       </Routes>
