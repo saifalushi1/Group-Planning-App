@@ -2,6 +2,10 @@ import { Spinner } from "reactstrap";
 
 const SpinnerComponent = () => {
     return(
-        <Spinner></Spinner>
+        <Spinner >
+            loading...
+        </Spinner>
     )
 }
+
+export default SpinnerComponent
