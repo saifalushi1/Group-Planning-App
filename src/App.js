@@ -12,6 +12,7 @@ import About from './About';
 import Contact from './Contact';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SpinnerComponent from './Side_components/Spinner';
 
 function App() {
 const [userAuthToken, setUserAuthToken] = useState('')
@@ -77,6 +78,7 @@ console.log(`authToken: ${userAuthToken.token}`)
         <Route path="/group-calendars" element={ <GroupCalendars user={ userId}/> }/>
         <Route path="/about" element={ <About/> }/>
         <Route path="/contact" element={ <Contact/> }/>
+        <Route path="/loading" element={<SpinnerComponent /> } />
         {/* <Route path="/test" element={ <EventsThatDay /> }/> */}
 
       </Routes>

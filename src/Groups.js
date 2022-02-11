@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios"
 
 import {UncontrolledAccordion, AccordionItem, AccordionHeader} from "reactstrap"
@@ -6,15 +6,18 @@ import {UncontrolledAccordion, AccordionItem, AccordionHeader} from "reactstrap"
 const Groups = (props) => {
     const [groups, setGroups] = useState([]);
 
-    const getGroups = () => {
-        const groupURL = `http://localhost:8000/grouper/groups/${props.userID}` 
+    const getGroups = (id) => {
+        const groupURL = `http://localhost:8000/grouper/groups/${id}` 
         axios.get(groupURL) 
         .then((res) => {
             setGroups(res.data)
         })
-        console.log(groups)
-
     }
+    console.log(groups)
+
+    useEffect(() => {
+        getGroups((props.userID))
+    }, [])
     return (
         <div>
         <UncontrolledAccordion defaultOpen="1">

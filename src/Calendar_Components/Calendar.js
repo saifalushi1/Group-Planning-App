@@ -56,7 +56,7 @@ console.log(events)
 
   useEffect(() => {
     handleSubmit()
-  }, [newEvent])
+  }, [setNewEvent])
 
   const handleDeleteOne = (id) => (
     axios.delete(`http://localhost:8000/grouper/events/${id}`, { headers: headers})

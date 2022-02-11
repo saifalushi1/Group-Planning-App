@@ -34,3 +34,12 @@ nav a{
     background-color: #D3D3D3;
     border-radius: 5px;
   }
+  /* .spinnerWrapper{
+      left: 50vh;
+      top: 50vh;
+  } */
+
+  .spinner-border{
+    left: 50vh;
+      top: 50vh;
+  }
