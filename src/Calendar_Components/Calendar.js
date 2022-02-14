@@ -2,9 +2,10 @@ import "./Calendar.css"
 import { useState, useEffect } from "react"
 import CalendarHeader from "./CalendarHeader"
 import Day from "./Day"
-import NewEventModal from "./DayModal"
+import DayModal from "./DayModal"
 import useDate from "./useDate"
 import axios from "axios"
+import EventsThatDay from "../Side_components/EventsThatDay"
 
 function Calendar({ user, headers }) {
   const [nav, setNav] = useState(0)
@@ -16,15 +17,14 @@ function Calendar({ user, headers }) {
   const [eventId, setEventId] = useState('')
 
   const eventsForDate = (date) => events.filter((e) => e.date === date)
+  const {days, dateDisplay} = useDate(events, nav)
 
-  // const getEvents = (id) => {
-  //   axios.get(`http://localhost:8000/grouper/events/${id}`, { params: {creator: id} }, { headers: headers })
-  //   .then((res) => res.json())
-  //   .then(json => {
-  //     setEvents(json)
-  //   })
-  //   .catch(console.error)
-  // }
+    // // FUNCTION TO SORT THISDAYSEVENTS BY START TIME
+    // const [thisDaysEvents, setThisDaysEvents] = useState()
+    // const sortedEvents = thisDaysEvents.sort((a, b) => new Date(`${clicked} ${a.startTime}`) - new Date(`${clicked} ${b.startTime}`))
+    // useEffect(() => {
+    //   setThisDaysEvents(sortedEvents)
+    // }, [sortedEvents])
 
   const getEvents = (userId) => {
     const userEventsUrl = `http://localhost:8000/grouper/events/${userId}` 
@@ -32,15 +32,13 @@ function Calendar({ user, headers }) {
     .then((res) => {
       setEvents(res.data)
     })
-    .catch(err => console.log("oh shit"))
+    .catch(err => console.log("uh oh"))
   }
-console.log(events)
 
   const handleSubmit = () => {
     axios.post(`http://localhost:8000/grouper/events`, { title: newEvent.title, date: newEvent.date, startTime: newEvent.startTime, endTime: newEvent.endTime, creator: user._id }, { headers: headers })
     .then((res) => {
       console.log(res)
-      // getEvents(user.id)
     getEvents(user._id) 
     })
   }
@@ -49,14 +47,9 @@ console.log(events)
     getEvents(user._id) 
   },[])
 
-  console.log(`new event: ${newEvent.title}`)
-
-
-  const {days, dateDisplay} = useDate(events, nav)
-
   useEffect(() => {
     handleSubmit()
-  }, [setNewEvent])
+  }, [newEvent])
 
   const handleDeleteOne = (id) => (
     axios.delete(`http://localhost:8000/grouper/events/${id}`, { headers: headers})
@@ -66,6 +59,8 @@ console.log(events)
     })
   )
 
+  console.log(eventsForDate(clicked))
+  
   return (
     <>
     <div className="Calendar">
@@ -103,7 +98,7 @@ console.log(events)
 
       {
         clicked &&
-        <NewEventModal
+        <DayModal
           eventsForDate={ eventsForDate }
           clicked={ clicked }
           handleDeleteOne= { handleDeleteOne }
@@ -116,6 +111,9 @@ console.log(events)
           }}
         />
       }
+      <div>
+        <EventsThatDay />
+      </div>
     </>
   )
 }

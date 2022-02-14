@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "./NavBar";
-import EventsThatDay from "./Side_components/EventsThatDay";
+// import EventsThatDay from "./Side_components/EventsThatDay";
 import Calendar from "./Calendar_Components/Calendar";
 
 
@@ -9,7 +9,7 @@ const Home = ({ user, headers }) => {
         <div>
             <NavBar/>
             <Calendar headers={ headers } user={ user } />
-            <EventsThatDay />
+            {/* <EventsThatDay /> */}
         </div>
     )
 }

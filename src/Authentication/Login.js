@@ -82,7 +82,7 @@ const Login = ({ loginRequest, storeId, isLoginInfoIncorrect }) => {
         <Link to="/signup">Create a new account</Link>
       </p>
       <p className="forgot-password">
-        <Link to="/reset-password">Forgot password?</Link>
+        <Link to="/resetPassword">Forgot password?</Link>
       </p>
     </Form>
   );

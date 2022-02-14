@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { TimePickerComponent } from '@syncfusion/ej2-react-calendars'
 
-const NewEventModal = ({ 
+const DayModal = ({ 
   onSave, 
   onClose, 
   handleDeleteOne, 
@@ -12,12 +12,14 @@ const NewEventModal = ({
   }) => {
   const [title, setTitle] = useState('')
   const [error, setError] = useState(false)
-  const thisDaysEvents = eventsForDate(clicked)
 
-  // Function to clear all events and close modal
-  // const deleteAllAndClose = () => (
-  //     handleDeleteAll(), onClose()
-  // )
+  const [thisDaysEvents, setThisDaysEvents] = useState(eventsForDate(clicked))
+
+  // // FUNCTION TO SORT THISDAYSEVENTS BY START TIME
+  const sortedEvents = thisDaysEvents.sort((a, b) => new Date(`${clicked} ${a.startTime}`) - new Date(`${clicked} ${b.startTime}`))
+  useEffect(() => {
+    setThisDaysEvents(sortedEvents)
+  }, [sortedEvents])
 
   // FUNCTION TO CONVERT MILITARY TIME TO STANDARD
   const convertMilitaryTime = (timeInput) => {
@@ -46,7 +48,7 @@ const NewEventModal = ({
         <h2>Events</h2>
         <ul>
             { thisDaysEvents.map((event, index) => (
-                <div onClick={ () => handleDeleteOne(event._id) } key={ index }>
+                <div key={ index }>
                 <li> 
                 <strong>Event:</strong> { event.title } | 
                 <strong> Start:</strong> { convertMilitaryTime(event.startTime) } | 
@@ -89,4 +91,4 @@ const NewEventModal = ({
   )
 }
 
-export default NewEventModal
+export default DayModal

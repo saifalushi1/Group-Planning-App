@@ -16,7 +16,7 @@ const NavBar = () => {
     const [navExpand, setNavExpand] = useState(false)
 
   return (
-    <div>
+    <div className="mainNavBar">
       <Navbar color="light" expand="md" light>
         <NavbarBrand className="home-button"><Link to="/home">Grouper</Link></NavbarBrand>
         <NavbarToggler onClick={() => setNavExpand(!navExpand)} />
@@ -32,7 +32,7 @@ const NavBar = () => {
               <DropdownToggle caret nav>
                 Options
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu end>
                 <DropdownItem><Link to="/about">About Us</Link></DropdownItem>
                 <DropdownItem><Link to="/contact">Contact Us</Link></DropdownItem>
                 <DropdownItem><Link to="/github">GitHub</Link></DropdownItem>

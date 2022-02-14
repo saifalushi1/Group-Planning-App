@@ -64,7 +64,7 @@ const SignUp = ({ headers }) => {
           <Link to="/">Already Have An Account? Login</Link>
       </p>
       <p className="forgot-password">
-        <Link to="/reset-password">Forgot password?</Link>
+        <Link to="/resetPassword">Forgot password?</Link>
       </p>
   </Form>
     )
