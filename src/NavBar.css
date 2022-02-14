@@ -1,0 +1,23 @@
+
+nav{
+    border:1px solid #ccc;
+    border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+
+nav a{
+    display:inline-block;
+    color: gray;
+    padding: 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    padding:10px;
+}
+
+.mainNavBar {
+    width: 100%;
+}
+

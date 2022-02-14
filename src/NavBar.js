@@ -1,25 +1,48 @@
-import React from "react";
-import '../src/App.css'
+import React, { useState } from "react";
+import "../src/NavBar.css";
 import { Link } from "react-router-dom";
-import Profile from "./Profile";
+import { Navbar, 
+    NavbarBrand,   
+    NavbarToggler,   
+    Collapse,  
+    Nav,        
+    NavItem,      
+    UncontrolledDropdown,   
+    DropdownToggle,   
+    DropdownMenu,   
+    DropdownItem,       } from "reactstrap";
 
 const NavBar = () => {
-    return(
-       <div>
-            <nav className="logo">
-                <h1>Grouper</h1>
-                <ul>
-                    <li><Link to="/profile">User Profile</Link></li>
-                    <li> <Link to="/my-calendar">My Calendar</Link></li>
-                    <li><Link to="/group-calendars">Group Calendars</Link></li>
-                    <li><Link to="/about">About Us</Link></li>
-                    <li><Link to="/contact">Contact Us</Link></li>
-                    <li><Link to="/github">GitHub</Link></li>
-                </ul>
-            </nav>
-       </div>
+    const [navExpand, setNavExpand] = useState(false)
 
-    )
-}
+  return (
+    <div className="mainNavBar">
+      <Navbar color="light" expand="md" light>
+        <NavbarBrand className="home-button"><Link to="/home">Grouper</Link></NavbarBrand>
+        <NavbarToggler onClick={() => setNavExpand(!navExpand)} />
+        <Collapse navbar isOpen={navExpand}>
+          <Nav className="me-auto" navbar>
+            <NavItem>
+            <Link to="/profile">User Profile</Link>
+            </NavItem>
+            <NavItem>
+            <Link to="/group-calendars">Group Calendars</Link>
+            </NavItem>
+            <UncontrolledDropdown inNavbar nav>
+              <DropdownToggle caret nav>
+                Options
+              </DropdownToggle>
+              <DropdownMenu end>
+                <DropdownItem><Link to="/about">About Us</Link></DropdownItem>
+                <DropdownItem><Link to="/contact">Contact Us</Link></DropdownItem>
+                <DropdownItem><Link to="/github">GitHub</Link></DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
+};
 
-export default NavBar
+export default NavBar;
