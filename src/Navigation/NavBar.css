@@ -1,4 +1,6 @@
 
+
+
 nav{
     border:1px solid #ccc;
     border-width:1px 0;
@@ -6,6 +8,7 @@ nav{
     margin:0;
     padding:0;
     text-align:center;
+    width: 100%;
 }
 
 nav a{
@@ -20,4 +23,3 @@ nav a{
 .mainNavBar {
     width: 100%;
 }
-

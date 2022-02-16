@@ -17,7 +17,7 @@ const SignUp = ({ headers }) => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:8000/grouper/signup", {
+        axios.post("https://protected-hollows-70202.herokuapp.com/grouper/signup", {
             name: newName,
             email: newEmail,
             password: newPassword

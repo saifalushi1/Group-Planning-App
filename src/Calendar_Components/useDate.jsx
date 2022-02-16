@@ -5,7 +5,7 @@ const useDate = (events, nav) => {
     const [dateDisplay, setDateDisplay] = useState('')
     const [days, setDays] = useState([])
   
-    const eventForDate = date => events.find(e => e.date === date)
+    const eventForDate = date => events.filter(e => e.date === date)
   
     useEffect(() => {
       const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']

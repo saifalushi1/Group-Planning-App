@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavBar from "../NavBar";
+import NavBar from "../Navigation/NavBar";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ const Profile = ({ userInfo, headers }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const userUrl = `http://localhost:8000/grouper/users/${userInfo._id}`
+        const userUrl = `https://protected-hollows-70202.herokuapp.com/grouper/users/${localStorage.getItem("UUID")}`
         axios.patch(userUrl, {name: userName, password: userPassword}, {headers: headers})
         .then(res => console.log(res))
         .catch(err => console.log(err))
@@ -22,6 +22,8 @@ console.log(`password:${userPassword}`)
     <div>
       <NavBar />
       <Form onSubmit={ (e) => handleSubmit(e) }>
+          <Label >User ID</Label>
+          <h3>{localStorage.getItem("UUID")}</h3>
         <FormGroup>
           <Label for="nameField">Name</Label>
           <Input
@@ -38,7 +40,7 @@ console.log(`password:${userPassword}`)
           <Input
             id="examplePassword"
             name="password"
-            placeholder="password placeholder"
+            placeholder="Enter New Password"
             onChange={(e) => setUserPassword(e.target.value)}
             type="password"
           />
