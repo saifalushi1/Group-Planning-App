@@ -13,7 +13,7 @@ function Calendar({ user, headers }) {
   const [startTime, setStartTime] = useState(null)
   const [endTime, setEndTime] = useState(null)
   const [events, setEvents] = useState([])
-  const [newEvent, setNewEvent] = useState({})
+  const [newEvent, setNewEvent] = useState(null)
 
   const eventsForDate = (date) => events.filter((e) => e.date === date)
   const {days, dateDisplay} = useDate(events, nav)
@@ -55,10 +55,12 @@ function Calendar({ user, headers }) {
   }
 
   const handleSubmit = () => {
-    axios.post(`https://protected-hollows-70202.herokuapp.com/grouper/events`, { title: newEvent.title, date: newEvent.date, startTime: newEvent.startTime, endTime: newEvent.endTime, creator: localStorage.getItem("UUID") }, { headers: headers })
-    .then((res) => {
-    getEvents(localStorage.getItem("UUID")) 
-    })
+    if(newEvent){
+      axios.post(`https://protected-hollows-70202.herokuapp.com/grouper/events`, { title: newEvent.title, date: newEvent.date, startTime: newEvent.startTime, endTime: newEvent.endTime, creator: localStorage.getItem("UUID") }, { headers: headers })
+      .then((res) => {
+        getEvents(localStorage.getItem("UUID")) 
+      })
+    }
   }
 
   useEffect(() => {

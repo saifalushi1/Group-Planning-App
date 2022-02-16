@@ -52,7 +52,7 @@ const useDate = (events, nav) => {
           })
         }
       }
-  
+      
       setDays(daysArr)
     }, [events, nav])
 
