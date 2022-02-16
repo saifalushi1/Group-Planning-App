@@ -2,7 +2,6 @@
 
 Our application is a personal calendar app where users can keep track of their schedules by inputting events.  Each user is able to create an account and where all of their events will be saved for later reference.  
 <br><br>
-<h3><a href="https://shrouded-dusk-02809.herokuapp.com">Try it for yourself!</a></h3>
 <br><br>
 <h3>Application in action:</h3>
 <br><br>
