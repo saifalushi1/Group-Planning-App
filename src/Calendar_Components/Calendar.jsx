@@ -22,11 +22,11 @@ function Calendar({ user, headers }) {
     day.filter(day => day.isCurrentDay === true)
   )
 
-  let currentDay = getCurrentDay(days)[0]
-  console.log(currentDay)
-  if(currentDay){
-    localStorage.setItem("currentDay", JSON.stringify(getCurrentDay(days)[0]))
-  }
+  const currentDay = getCurrentDay(days)[0]
+  // console.log(currentDay)
+  // if(currentDay){
+  //   localStorage.setItem("currentDay", JSON.stringify(getCurrentDay(days)[0]))
+  // }
 
     // FUNCTION TO CONVERT MILITARY TIME TO STANDARD
     const convertMilitaryTime = (timeInput) => {
@@ -59,15 +59,15 @@ function Calendar({ user, headers }) {
   }
 
   const handleSubmit = () => {
-    axios.post(`https://protected-hollows-70202.herokuapp.com/grouper/events`, { title: newEvent.title, date: newEvent.date, startTime: newEvent.startTime, endTime: newEvent.endTime, creator: user._id }, { headers: headers })
+    axios.post(`https://protected-hollows-70202.herokuapp.com/grouper/events`, { title: newEvent.title, date: newEvent.date, startTime: newEvent.startTime, endTime: newEvent.endTime, creator: localStorage.getItem("UUID") }, { headers: headers })
     .then((res) => {
-    getEvents(user._id) 
+    getEvents(localStorage.getItem("UUID")) 
     })
   }
 
   useEffect(() => {
-    getEvents(user._id) 
-  },[])
+    getEvents(localStorage.getItem("UUID")) 
+  },[user])
 
   useEffect(() => {
     handleSubmit()
@@ -76,7 +76,7 @@ function Calendar({ user, headers }) {
   const handleDeleteOne = (id) => (
     axios.delete(`https://protected-hollows-70202.herokuapp.com/grouper/events/${id}`, { headers: headers})
     .then(() => {
-      getEvents(user._id)
+      getEvents(localStorage.getItem("UUID"))
     })
   )
   
@@ -132,9 +132,11 @@ function Calendar({ user, headers }) {
         />
       }
       <div>
-        <EventsThatDay convertMilitaryTime = { convertMilitaryTime } 
-        // currentDay = { currentDay } 
-        />
+
+        {/* <EventsThatDay convertMilitaryTime = { convertMilitaryTime } 
+        currentDay = { currentDay } 
+        /> */}
+
       </div>
     </>
   )
