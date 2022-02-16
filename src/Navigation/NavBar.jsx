@@ -38,6 +38,9 @@ const NavBar = () => {
                 <DropdownItem type="submit"><a href="https://github.com/saifalushi1/grouper" target="_blank">Github</a></DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
+            <NavItem>
+            <Link to="/">Sign-Out</Link>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

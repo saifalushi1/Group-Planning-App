@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavBar from "../Navigation/NavBar";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Profile = ({ userInfo, headers }) => {
     const [userName, setUserName] = useState(userInfo.name)
