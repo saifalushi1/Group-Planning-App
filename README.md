@@ -15,7 +15,7 @@ Our application is a personal calendar app where users can keep track of their s
     <li>Add ability to add group events that will show on every member's personal calendar</li>
     <li>Additional styling</li>
 </ul>
-<br><br>
+<br>
 Technologies that were used:  
 <br>
     React - https://reactjs.org/ 
