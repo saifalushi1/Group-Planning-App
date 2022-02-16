@@ -82,7 +82,7 @@ function Calendar({ user, headers }) {
   
   return (
     <>
-    <div className="Calendar">
+    <div className="calendarDiv">
       <CalendarHeader 
         dateDisplay={ dateDisplay }
         onNext={ () => setNav(nav + 1) }
