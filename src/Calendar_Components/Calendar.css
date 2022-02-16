@@ -200,7 +200,7 @@ button {
     flex-wrap: wrap;
   }
   .day {
-    width: 12%;
+    width: 11%;
     padding: 5px;
     height: 15%;
     cursor: pointer;
