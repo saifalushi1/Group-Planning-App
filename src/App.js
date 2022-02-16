@@ -61,9 +61,6 @@ if(userAuthToken) {
 }
 }, [userAuthToken])
 
-// if(userAuthToken){
-//   return(
-//     setLoggedIn(true))}
 console.log(`authToken: ${userAuthToken.token}`)
 console.log(userId)
 console.log(headers)
@@ -75,6 +72,8 @@ console.log(headers)
          storeId={ storeId }
          loggedIn = { loggedIn }
          isLoginInfoIncorrect={ isLoginInfoIncorrect }
+         userId={ userId }
+         userAuthToken={ userAuthToken }
         />}/>
         <Route path="/signup" element = { <SignUp headers={ headers } /> }/>
         <Route path="/resetPassword" element={ <ResetPassword/> }/>

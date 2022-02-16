@@ -15,11 +15,6 @@ const EventsThatDay = ({ convertMilitaryTime }) => {
     setEventsArray(JSON.parse(currentDay).event)
   }, [])
 
-  // console.log(eventsArray)
-  // useEffect(() => {
-  //   eventsArray.map
-  // }, [])
-
   useEffect(() => {
     setCurrentDayEventTitles(eventsArray.map((event) => (
       event.title
@@ -32,16 +27,8 @@ const EventsThatDay = ({ convertMilitaryTime }) => {
     )))
   }, [])
 
-  console.log(eventsArray)
-  console.log(currentDayEventTitles)
-  console.log(currentDayEventDate)
-
-
  // FUNCTION TO SORT TODAYSEVENTS BY START TIME
-//  const sortedEvents = thisDaysEvents.sort((a, b) => new Date(`${clicked} ${a.startTime}`) - new Date(`${clicked} ${b.startTime}`))
-//  useEffect(() => {
-//    setThisDaysEvents(sortedEvents)
-//  }, [sortedEvents])
+eventsArray.sort((a, b) => new Date(`${a.date} ${a.startTime}`) - new Date(`${b.date} ${b.startTime}`))
 
   return (
     <>
