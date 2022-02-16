@@ -69,7 +69,7 @@ const NewEventModal = ({
       <TimePickerComponent placeholder='End Time' onChange={ (e) => setEndTime(e.target.value.toTimeString())} />
 
         <button onClick={ () => {
-            if (title && startTime && endTime) {
+            if (title && startTime && endTime && (parseInt(startTime) < parseInt(endTime))) {
               setError(false)
               onSave(title)
             } else {
