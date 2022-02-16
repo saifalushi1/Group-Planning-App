@@ -19,20 +19,19 @@ const Profile = ({ userInfo, headers }) => {
     <div>
       <NavBar />
       <Form onSubmit={ (e) => handleSubmit(e) }>
-          <Label >User ID</Label>
-          <h3>{localStorage.getItem("UUID")}</h3>
+          <h3>Profile Settings</h3>
         <FormGroup>
-          <Label for="nameField">Name</Label>
+          <Label for="nameField">Update Name</Label>
           <Input
             id="nameField"
             name="name"
-            placeholder={userInfo.name}
+            placeholder={`Enter A New Name`}
             onChange={(e) => setUserName(e.target.value)}
             type="text"
           />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
+          <Label for="examplePassword">Change Password</Label>
           <Input
             id="examplePassword"
             name="password"
