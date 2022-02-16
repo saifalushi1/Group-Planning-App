@@ -8,16 +8,13 @@ const NewEventModal = ({
   eventsForDate, 
   clicked, 
   setEndTime, 
-  setStartTime 
+  setStartTime,
+  endTime,
+  startTime
   }) => {
   const [title, setTitle] = useState('')
   const [error, setError] = useState(false)
   const thisDaysEvents = eventsForDate(clicked)
-
-  // Function to clear all events and close modal
-  // const deleteAllAndClose = () => (
-  //     handleDeleteAll(), onClose()
-  // )
 
   // FUNCTION TO CONVERT MILITARY TIME TO STANDARD
   const convertMilitaryTime = (timeInput) => {
@@ -39,6 +36,9 @@ const NewEventModal = ({
   return (
   timeValue 
   )}
+
+  // FUNCTION TO SORT EVENTS BY START TIME
+  thisDaysEvents.sort((a, b) => new Date(`${clicked} ${a.startTime}`) - new Date(`${clicked} ${b.startTime}`))
 
   return (
     <>
@@ -69,7 +69,7 @@ const NewEventModal = ({
       <TimePickerComponent placeholder='End Time' onChange={ (e) => setEndTime(e.target.value.toTimeString())} />
 
         <button onClick={ () => {
-            if (title) {
+            if (title && startTime && endTime) {
               setError(false)
               onSave(title)
             } else {

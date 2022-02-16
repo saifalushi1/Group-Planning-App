@@ -1,20 +1,16 @@
-import React, {useState, useEffect, useContext, createContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import {Route, Routes, useNavigate } from 'react-router-dom'
 import Login from './Authentication/Login';
 import SignUp from './Authentication/SignUp';
 import ResetPassword from './Authentication/ResetPassword';
 import Home from './Home';
-import EventsThatDay from './Side_components/EventsThatDay';
 import Profile from './User/Profile';
-import GroupCalendars from './GroupCalendars';
 import About from './Navigation/About';
 import Contact from './Navigation/Contact';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SpinnerComponent from './Side_components/Spinner';
-
-const Context = createContext("Default Value")
 
 const App = () => {
   const [userAuthToken, setUserAuthToken] = useState('')
@@ -34,7 +30,6 @@ const App = () => {
       setUserAuthToken(res.data)
       localStorage.setItem("JWT", res.data.token)
       setIsLoginInfoIncorrect(false)
-      console.log(res.data)
       navigate("/home")
     })
     .catch(err => setIsLoginInfoIncorrect(true))
@@ -49,8 +44,6 @@ const App = () => {
     .then((res) => {
         setUserId(res.data)
         localStorage.setItem("UUID", res.data._id)
-      console.log(res)
-      console.log(userId)
     })
     .catch(err => console.log(err))
   }
@@ -61,9 +54,6 @@ if(userAuthToken) {
 }
 }, [userAuthToken])
 
-console.log(`authToken: ${userAuthToken.token}`)
-console.log(userId)
-console.log(headers)
   return (
     <main>
       <Routes>
@@ -79,11 +69,9 @@ console.log(headers)
         <Route path="/resetPassword" element={ <ResetPassword/> }/>
         <Route path="/home" element={<Home headers={ headers } user={ userId } />}/>
         <Route path="/profile" element={ <Profile userInfo={ userId } headers={ headers } /> }/>
-        <Route path="/group-calendars" element={ <GroupCalendars userId={ userId} headers = {headers}/> }/>
         <Route path="/about" element={ <About/> }/>
         <Route path="/contact" element={ <Contact/> }/>
         <Route path="/loading" element={<SpinnerComponent /> } />
-        {/* <Route path="/test" element={ <EventsThatDay /> }/> */}
 
       </Routes>
     </main>

@@ -10,8 +10,8 @@ import EventsThatDay from "../Side_components/EventsThatDay"
 function Calendar({ user, headers }) {
   const [nav, setNav] = useState(0)
   const [clicked, setClicked] = useState()
-  const [startTime, setStartTime] = useState('')
-  const [endTime, setEndTime] = useState('')
+  const [startTime, setStartTime] = useState(null)
+  const [endTime, setEndTime] = useState(null)
   const [events, setEvents] = useState([])
   const [newEvent, setNewEvent] = useState({})
 
@@ -23,10 +23,6 @@ function Calendar({ user, headers }) {
   )
 
   const currentDay = getCurrentDay(days)[0]
-  // console.log(currentDay)
-  // if(currentDay){
-  //   localStorage.setItem("currentDay", JSON.stringify(getCurrentDay(days)[0]))
-  // }
 
     // FUNCTION TO CONVERT MILITARY TIME TO STANDARD
     const convertMilitaryTime = (timeInput) => {
@@ -125,6 +121,8 @@ function Calendar({ user, headers }) {
           onClose={() => setClicked(null)}
           setStartTime = { setStartTime }
           setEndTime = { setEndTime }
+          startTime = { startTime }
+          endTime = { endTime }
           onSave={title => {
             setNewEvent({ title, date: clicked, startTime, endTime })
             setClicked(null)

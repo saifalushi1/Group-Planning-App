@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FormGroup, Input, Label, FormFeedback, Form } from "reactstrap";
-import CheckInput from "./CheckInput";
 
 const Login = ({ loginRequest, storeId, isLoginInfoIncorrect, userId, userAuthToken }) => {
   const [inputEmailValue, setinputEmailValue] = useState("");
   const [inputPasswordValue, setInputPasswordValue] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputEmailValue, inputPasswordValue);
     loginRequest(inputEmailValue, inputPasswordValue);
     storeId(inputEmailValue);
   };
-  useEffect(()=> {
 
-  }, [userAuthToken, userId])
-  //   console.log(inputEmailValue);
-  console.log(isLoginInfoIncorrect);
   return isLoginInfoIncorrect === false ? (
     <Form onSubmit={(e) => handleSubmit(e)}>
       <h3>Login</h3>
