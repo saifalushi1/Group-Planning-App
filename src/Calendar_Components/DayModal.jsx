@@ -8,7 +8,8 @@ const DayModal = ({
   eventsForDate, 
   clicked, 
   setEndTime, 
-  setStartTime 
+  setStartTime,
+  convertMilitaryTime
   }) => {
   const [title, setTitle] = useState('')
   const [error, setError] = useState(false)
@@ -20,27 +21,6 @@ const DayModal = ({
   useEffect(() => {
     setThisDaysEvents(sortedEvents)
   }, [sortedEvents])
-
-  // FUNCTION TO CONVERT MILITARY TIME TO STANDARD
-  const convertMilitaryTime = (timeInput) => {
-  let time = timeInput
-  time = time.split(':')
-  let hours = Number(time[0])
-  let minutes = Number(time[1])
-  let timeValue
-  
-  if (hours > 0 && hours <= 12) {
-    timeValue= "" + hours
-  } else if (hours > 12) {
-    timeValue= "" + (hours - 12)
-  } else if (hours === 0) {
-    timeValue= "12"
-  }
-  timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes
-  timeValue += (hours >= 12) ? " P.M." : " A.M."
-  return (
-  timeValue 
-  )}
 
   return (
     <>

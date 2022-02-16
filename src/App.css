@@ -27,14 +27,41 @@ nav a{
     background: #282c34;
   } */
 
-  .eventsWrapper{
-    width: 400px;
-    height: 400px;
-    float: right;
-    background-color: #D3D3D3;
-    border-radius: 5px;
-  }
   /* .spinnerWrapper{
       left: 50vh;
       top: 50vh;
   } */
+
+  @media only screen and (max-width: 600px) {
+    
+    .eventsWrapper{
+      width: 100%;
+      float: right;
+      background-color: #D3D3D3;
+      border-radius: 5px;
+      z-index: 5;
+      text-align: center;
+      justify-content: center;
+    }
+    body {
+    justify-content: center;
+    width: 100%;
+    }
+    .calendar {
+      width: 100%;
+    }
+    .mainNavBar {
+      width: 100%;
+    }
+  }
+
+  .homeDiv {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #root {
+    width: 100%;
+  }
+
+

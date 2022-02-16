@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FormGroup, Input, Label, FormFeedback, Form } from "reactstrap";
 import CheckInput from "./CheckInput";
 
-const Login = ({ loginRequest, storeId, isLoginInfoIncorrect }) => {
+const Login = ({ loginRequest, storeId, isLoginInfoIncorrect, userId, userAuthToken }) => {
   const [inputEmailValue, setinputEmailValue] = useState("");
   const [inputPasswordValue, setInputPasswordValue] = useState("");
   const navigate = useNavigate();
@@ -14,7 +14,9 @@ const Login = ({ loginRequest, storeId, isLoginInfoIncorrect }) => {
     loginRequest(inputEmailValue, inputPasswordValue);
     storeId(inputEmailValue);
   };
+  useEffect(()=> {
 
+  }, [userAuthToken, userId])
   //   console.log(inputEmailValue);
   console.log(isLoginInfoIncorrect);
   return isLoginInfoIncorrect === false ? (

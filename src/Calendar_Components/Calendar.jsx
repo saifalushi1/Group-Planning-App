@@ -14,20 +14,43 @@ function Calendar({ user, headers }) {
   const [endTime, setEndTime] = useState('')
   const [events, setEvents] = useState([])
   const [newEvent, setNewEvent] = useState({})
-  const [eventId, setEventId] = useState('')
 
   const eventsForDate = (date) => events.filter((e) => e.date === date)
   const {days, dateDisplay} = useDate(events, nav)
 
-    // // FUNCTION TO SORT THISDAYSEVENTS BY START TIME
-    // const [thisDaysEvents, setThisDaysEvents] = useState()
-    // const sortedEvents = thisDaysEvents.sort((a, b) => new Date(`${clicked} ${a.startTime}`) - new Date(`${clicked} ${b.startTime}`))
-    // useEffect(() => {
-    //   setThisDaysEvents(sortedEvents)
-    // }, [sortedEvents])
+  const getCurrentDay = (day) => (
+    day.filter(day => day.isCurrentDay === true)
+  )
+
+  let currentDay = getCurrentDay(days)[0]
+  console.log(currentDay)
+  if(currentDay){
+    localStorage.setItem("currentDay", JSON.stringify(getCurrentDay(days)[0]))
+  }
+
+    // FUNCTION TO CONVERT MILITARY TIME TO STANDARD
+    const convertMilitaryTime = (timeInput) => {
+      let time = timeInput
+      time = time.split(':')
+      let hours = Number(time[0])
+      let minutes = Number(time[1])
+      let timeValue
+      
+      if (hours > 0 && hours <= 12) {
+        timeValue= "" + hours
+      } else if (hours > 12) {
+        timeValue= "" + (hours - 12)
+      } else if (hours === 0) {
+        timeValue= "12"
+      }
+      timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes
+      timeValue += (hours >= 12) ? " P.M." : " A.M."
+      return (
+      timeValue 
+      )}
 
   const getEvents = (userId) => {
-    const userEventsUrl = `http://localhost:8000/grouper/events/${userId}` 
+    const userEventsUrl = `https://protected-hollows-70202.herokuapp.com/grouper/events/${userId}` 
     axios.get(userEventsUrl, { headers: headers} )
     .then((res) => {
       setEvents(res.data)
@@ -36,9 +59,8 @@ function Calendar({ user, headers }) {
   }
 
   const handleSubmit = () => {
-    axios.post(`http://localhost:8000/grouper/events`, { title: newEvent.title, date: newEvent.date, startTime: newEvent.startTime, endTime: newEvent.endTime, creator: user._id }, { headers: headers })
+    axios.post(`https://protected-hollows-70202.herokuapp.com/grouper/events`, { title: newEvent.title, date: newEvent.date, startTime: newEvent.startTime, endTime: newEvent.endTime, creator: user._id }, { headers: headers })
     .then((res) => {
-      console.log(res)
     getEvents(user._id) 
     })
   }
@@ -52,14 +74,11 @@ function Calendar({ user, headers }) {
   }, [newEvent])
 
   const handleDeleteOne = (id) => (
-    axios.delete(`http://localhost:8000/grouper/events/${id}`, { headers: headers})
+    axios.delete(`https://protected-hollows-70202.herokuapp.com/grouper/events/${id}`, { headers: headers})
     .then(() => {
-      setEventId(id)
       getEvents(user._id)
     })
   )
-
-  console.log(eventsForDate(clicked))
   
   return (
     <>
@@ -100,6 +119,7 @@ function Calendar({ user, headers }) {
         clicked &&
         <DayModal
           eventsForDate={ eventsForDate }
+          convertMilitaryTime = { convertMilitaryTime }
           clicked={ clicked }
           handleDeleteOne= { handleDeleteOne }
           onClose={() => setClicked(null)}
@@ -112,7 +132,9 @@ function Calendar({ user, headers }) {
         />
       }
       <div>
-        <EventsThatDay />
+        <EventsThatDay convertMilitaryTime = { convertMilitaryTime } 
+        // currentDay = { currentDay } 
+        />
       </div>
     </>
   )

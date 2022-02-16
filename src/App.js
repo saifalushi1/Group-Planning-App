@@ -8,25 +8,27 @@ import Home from './Home';
 import EventsThatDay from './Side_components/EventsThatDay';
 import Profile from './User/Profile';
 import GroupCalendars from './GroupCalendars';
-import About from './About';
-import Contact from './Contact';
+import About from './Navigation/About';
+import Contact from './Navigation/Contact';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SpinnerComponent from './Side_components/Spinner';
 
-function App() {
-const [userAuthToken, setUserAuthToken] = useState('')
-const [userId, setUserId] = useState('')  
-const [loggedIn, setLoggedIn] = useState(false)
-const [isLoginInfoIncorrect, setIsLoginInfoIncorrect] = useState(false)
-const navigate = useNavigate()
-const headers = {
-  'Content-Type': 'application/json',
-  "Authorization": `Bearer ${localStorage.getItem("JWT")}`
-}
+const Context = createContext("Default Value")
+
+const App = () => {
+  const [userAuthToken, setUserAuthToken] = useState('')
+  const [userId, setUserId] = useState('')  
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [isLoginInfoIncorrect, setIsLoginInfoIncorrect] = useState(false)
+  const navigate = useNavigate()
+  const headers = {
+    'Content-Type': 'application/json',
+    "Authorization": `Bearer ${localStorage.getItem("JWT")}`
+  }
 
   const loginRequest = (email, password) => {
-    const loginUrl = "http://localhost:8000/grouper/signin"
+    const loginUrl = "https://protected-hollows-70202.herokuapp.com/grouper/signin"
     axios.post(loginUrl, {email: email, password: password}, { headers: headers})
       .then((res) => {
       setUserAuthToken(res.data)
@@ -40,7 +42,7 @@ const headers = {
 
 
   const storeId = async (email) => {
-    const storeIdUrl = `http://localhost:8000/grouper/users/${email}` 
+    const storeIdUrl = `https://protected-hollows-70202.herokuapp.com/grouper/users/${email}` 
     await axios.get(storeIdUrl, {params: {
       email: email
     }}, { headers: headers} )
@@ -59,15 +61,10 @@ if(userAuthToken) {
 }
 }, [userAuthToken])
 
-// if(userAuthToken){
-//   return(
-//     setLoggedIn(true))}
 console.log(`authToken: ${userAuthToken.token}`)
 console.log(userId)
 console.log(headers)
   return (
-    <div>
-
     <main>
       <Routes>
         <Route path="/" element= {<Login 
@@ -75,12 +72,14 @@ console.log(headers)
          storeId={ storeId }
          loggedIn = { loggedIn }
          isLoginInfoIncorrect={ isLoginInfoIncorrect }
+         userId={ userId }
+         userAuthToken={ userAuthToken }
         />}/>
         <Route path="/signup" element = { <SignUp headers={ headers } /> }/>
         <Route path="/resetPassword" element={ <ResetPassword/> }/>
         <Route path="/home" element={<Home headers={ headers } user={ userId } />}/>
         <Route path="/profile" element={ <Profile userInfo={ userId } headers={ headers } /> }/>
-        <Route path="/group-calendars" element={ <GroupCalendars user={ userId} headers = {headers}/> }/>
+        <Route path="/group-calendars" element={ <GroupCalendars userId={ userId} headers = {headers}/> }/>
         <Route path="/about" element={ <About/> }/>
         <Route path="/contact" element={ <Contact/> }/>
         <Route path="/loading" element={<SpinnerComponent /> } />
@@ -88,7 +87,6 @@ console.log(headers)
 
       </Routes>
     </main>
-  </div>
   );
 }
 
