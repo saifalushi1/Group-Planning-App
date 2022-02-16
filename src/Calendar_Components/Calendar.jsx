@@ -131,14 +131,11 @@ function Calendar({ user, headers }) {
           }}
         />
       }
-      <div>
-
-        {/* <EventsThatDay convertMilitaryTime = { convertMilitaryTime } 
-        currentDay = { currentDay } 
-        /> */}
-
-      </div>
-    </>
+        {/* { <EventsThatDay convertMilitaryTime = { convertMilitaryTime } 
+        currentDay = { currentDay } />
+        } */}
+        {( currentDay ? <EventsThatDay  convertMilitaryTime = { convertMilitaryTime } currentDay = { currentDay }/> : <p></p>)}
+        </>
   )
 }
 

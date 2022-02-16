@@ -25,13 +25,14 @@ button {
   font-size: 26px;
   font-family: sans-serif;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 #header button {
   background-color:#034f81;
 }
 #container {
   width: 770px;
+  margin: 0 auto;
 }
 #weekdays {
   width: 100%;

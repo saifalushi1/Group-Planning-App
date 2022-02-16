@@ -18,7 +18,7 @@ const NavBar = () => {
   return (
     <div className="mainNavBar">
       <Navbar color="light" expand="md" light>
-        <NavbarBrand className="home-button"><Link to="/home">Grouper</Link></NavbarBrand>
+        <h4 className="home-button navbar-brand"><Link to="/home">Grouper</Link></h4>
         <NavbarToggler onClick={() => setNavExpand(!navExpand)} />
         <Collapse navbar isOpen={navExpand}>
           <Nav className="me-auto" navbar>
@@ -35,14 +35,14 @@ const NavBar = () => {
               <DropdownMenu end>
                 <DropdownItem><Link to="/about">About Us</Link></DropdownItem>
                 <DropdownItem><Link to="/contact">Contact Us</Link></DropdownItem>
-                <DropdownItem><a href="https://github.com/saifalushi1/grouper" target="_blank">Github</a></DropdownItem>
+                <DropdownItem type="submit"><a href="https://github.com/saifalushi1/grouper" target="_blank">Github</a></DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
         </Collapse>
       </Navbar>
     </div>
-  );
-};
+  )
+}
 
 export default NavBar;
