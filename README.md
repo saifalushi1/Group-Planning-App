@@ -3,7 +3,7 @@
 Our application is a personal calendar app where users can keep track of their schedules by inputting events.  Each user is able to create an account and where all of their events will be saved for later reference.  
 <br><br>
 <br><br>
-<h3>Application in action:</h3>
+<h3><a href="https://youtu.be/NaOKbcd9hVQ">Demo:</a></h3>
 <br><br>
 <img width="1381" alt="grouper app screenshot" src="./pictures/CalendarAppScreenshot.png"/>
 <br><br>

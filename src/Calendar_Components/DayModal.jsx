@@ -85,6 +85,7 @@ const NewEventModal = ({
       </div>
 
       <div id='modalBackDrop' />
+
     </>
   )
 }
