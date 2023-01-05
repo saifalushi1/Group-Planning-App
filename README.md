@@ -1,6 +1,6 @@
 ## Grouper App
 
-Our application is a personal calendar app where users can keep track of their schedules by inputting events.  Each user is able to create an account and where all of their events will be saved for later reference.  
+The application is a personal calendar app where users can keep track of their schedules by inputting events.  Each user is able to create an account and where all of their events will be saved for later reference.  
 <br>
 <h3><a href="https://github.com/saifalushi1/grouper-backEnd">BackEnd Code:</a></h3>
 <br>
@@ -30,13 +30,10 @@ Our application is a personal calendar app where users can keep track of their s
     <br>
     Site deployed using Heroku - https://www.heroku.com
 <br><br>
-Special thanks to PortEXE on Youtube for inspiration on calendar implementation & SyncFusion for their incredible time-picker component.
-<br><br>
-<br><br>
-Our initial idea for an application is a social media application in which users can input their schedule into a calendar.  The users can then join groups with their friends and the application will compare everyone’s schedules to show when the group can hang out.  Due to some unforseen circumstances involving our group size being reduced to two people, we had to change directions a bit.  
+The initial idea for an application is a social media application in which users can input their schedule into a calendar.  The users can then join groups with their friends and the application will compare everyone’s schedules to show when the group can hang out.  Due to some unforseen circumstances involving our group size being reduced to two people, we had to change directions a bit.  
 <br><br>
 
-### Our initial frontend and backend mockups
+### The initial frontend and backend mockups
 <img width="1381" alt="front-end Mockup" src="./pictures/grouper-frontend-mockup-1.jpg">
 <br>
 <img width="1381" alt="WireFrame" src="./pictures/UpdatedGrouper_Wireframe-1.png">
